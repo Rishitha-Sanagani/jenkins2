@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="711fadd6-2dbe-426d-8bf1-11f7c9152afc" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="jenkinsFlow" doc:id="791a582d-2f6c-4768-a435-6b485ee88290" >
+		<http:listener doc:name="Listener" doc:id="2499491b-0ff8-4cf0-84b7-eff59b769686" config-ref="HTTP_Listener_config" path="/jenkins"/>
+		<set-payload value='"hello world"' doc:name="Set Payload" doc:id="1206e428-aaf6-408e-869e-5c7296dbbaea" />
+		<logger level="INFO" doc:name="Logger" doc:id="ca71986f-1d0f-446a-9898-cda2c86a9631" message="#[payload]"/>
+	</flow>
+</mule>
